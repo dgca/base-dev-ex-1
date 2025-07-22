@@ -7,9 +7,11 @@ const ROOT_URL = process.env.NEXT_PUBLIC_URL || process.env.VERCEL_URL || "";
  */
 export const minikitConfig = {
   accountAssociation: {
-    header: "",
-    payload: "",
-    signature: "",
+    header:
+      "eyJmaWQiOjYxNjIsInR5cGUiOiJhdXRoIiwia2V5IjoiMHg1MmE0NTdCZGU1NGZERWFGNzIxOTlBQTZhNjJENUMwMjdiQzhDYmQ4In0",
+    payload: "eyJkb21haW4iOiJiYXNlLWRldi1leC0xLnZlcmNlbC5hcHAifQ",
+    signature:
+      "ddNa80RaK59B3uqotGCojZACBbRlZCZu5MnDRjbQA/5qp+rJs+a1BOy0aYKMEAdiCzoYUQ71iojeLz/RIJssdRw=",
   },
   frame: {
     version: "1",
