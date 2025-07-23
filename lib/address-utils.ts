@@ -27,7 +27,10 @@ export async function getAddressesFromBlob(): Promise<string[]> {
 
 export async function saveAddressesToBlob(addresses: string[]): Promise<void> {
   const data: AddressData = { addresses };
-  await put(BLOB_KEY, JSON.stringify(data), { access: "public" });
+  await put(BLOB_KEY, JSON.stringify(data), {
+    access: "public",
+    allowOverwrite: true,
+  });
 }
 
 export function isValidEthereumAddress(address: string): boolean {
