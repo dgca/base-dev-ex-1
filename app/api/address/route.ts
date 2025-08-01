@@ -4,6 +4,7 @@ import {
   saveAddressesToBlob,
   isValidEthereumAddress,
   DEFAULT_ADDRESS,
+  getDeploymentIdentifier,
 } from "../../../lib/address-utils";
 
 function validateApiKey(request: NextRequest): boolean {
@@ -19,11 +20,15 @@ function validateApiKey(request: NextRequest): boolean {
 }
 
 export async function GET() {
+  const deployment = getDeploymentIdentifier();
+  console.log(`[${deployment}] GET /api/address - Fetching addresses`);
+
   try {
     const addresses = await getAddressesFromBlob();
-    return NextResponse.json({ addresses });
+    console.log(`[${deployment}] Found ${addresses.length} addresses`);
+    return NextResponse.json({ addresses, deployment });
   } catch (error) {
-    console.error("Error in GET /api/address:", error);
+    console.error(`[${deployment}] Error in GET /api/address:`, error);
     return NextResponse.json(
       { error: "Failed to fetch addresses" },
       { status: 500 }
@@ -32,8 +37,14 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const deployment = getDeploymentIdentifier();
+  console.log(`[${deployment}] POST /api/address - Adding new address`);
+
   // Validate API key
   if (!validateApiKey(request)) {
+    console.log(
+      `[${deployment}] Unauthorized request - missing/invalid API key`
+    );
     return NextResponse.json(
       { error: "Unauthorized - Invalid or missing x-api-key header" },
       { status: 401 }
@@ -61,6 +72,7 @@ export async function POST(request: NextRequest) {
     const currentAddresses = await getAddressesFromBlob();
 
     if (currentAddresses.includes(address)) {
+      console.log(`[${deployment}] Address ${address} already exists`);
       return NextResponse.json(
         { error: "Address already exists" },
         { status: 409 }
@@ -69,13 +81,17 @@ export async function POST(request: NextRequest) {
 
     const updatedAddresses = [...currentAddresses, address];
     await saveAddressesToBlob(updatedAddresses);
+    console.log(
+      `[${deployment}] Address ${address} added successfully. Total addresses: ${updatedAddresses.length}`
+    );
 
     return NextResponse.json({
       message: "Address added successfully",
       addresses: updatedAddresses,
+      deployment,
     });
   } catch (error) {
-    console.error("Error in POST /api/address:", error);
+    console.error(`[${deployment}] Error in POST /api/address:`, error);
     return NextResponse.json(
       { error: "Failed to add address" },
       { status: 500 }
@@ -84,8 +100,14 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const deployment = getDeploymentIdentifier();
+  console.log(`[${deployment}] DELETE /api/address - Removing address`);
+
   // Validate API key
   if (!validateApiKey(request)) {
+    console.log(
+      `[${deployment}] Unauthorized request - missing/invalid API key`
+    );
     return NextResponse.json(
       { error: "Unauthorized - Invalid or missing x-api-key header" },
       { status: 401 }
@@ -105,6 +127,7 @@ export async function DELETE(request: NextRequest) {
     const currentAddresses = await getAddressesFromBlob();
 
     if (!currentAddresses.includes(address)) {
+      console.log(`[${deployment}] Address ${address} not found`);
       return NextResponse.json({ error: "Address not found" }, { status: 404 });
     }
 
@@ -117,13 +140,17 @@ export async function DELETE(request: NextRequest) {
       updatedAddresses.length === 0 ? [DEFAULT_ADDRESS] : updatedAddresses;
 
     await saveAddressesToBlob(finalAddresses);
+    console.log(
+      `[${deployment}] Address ${address} removed successfully. Total addresses: ${finalAddresses.length}`
+    );
 
     return NextResponse.json({
       message: "Address removed successfully",
       addresses: finalAddresses,
+      deployment,
     });
   } catch (error) {
-    console.error("Error in DELETE /api/address:", error);
+    console.error(`[${deployment}] Error in DELETE /api/address:`, error);
     return NextResponse.json(
       { error: "Failed to remove address" },
       { status: 500 }
