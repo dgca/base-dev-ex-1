@@ -34,13 +34,13 @@ export async function getAddressesFromBlob(): Promise<string[]> {
     const { blobs } = await list({ prefix: blobKey });
 
     if (blobs.length === 0) {
-      return [DEFAULT_ADDRESS];
+      return [];
     }
 
     const response = await fetch(blobs[0].url);
     const data: AddressData = await response.json();
 
-    return data.addresses.length > 0 ? data.addresses : [DEFAULT_ADDRESS];
+    return data.addresses;
   } catch (error) {
     console.error("Error fetching addresses from blob:", error);
     return [DEFAULT_ADDRESS];
