@@ -9,9 +9,16 @@ export const minikitConfig = {
   accountAssociation: {
     header:
       "eyJmaWQiOjYxNjIsInR5cGUiOiJhdXRoIiwia2V5IjoiMHg1MmE0NTdCZGU1NGZERWFGNzIxOTlBQTZhNjJENUMwMjdiQzhDYmQ4In0",
+<<<<<<< Updated upstream
     payload: "eyJkb21haW4iOiJiYXNlLWRldi1leC0xLnZlcmNlbC5hcHAifQ",
     signature:
       "ddNa80RaK59B3uqotGCojZACBbRlZCZu5MnDRjbQA/5qp+rJs+a1BOy0aYKMEAdiCzoYUQ71iojeLz/RIJssdRw=",
+=======
+    payload:
+      "eyJkb21haW4iOiJiYXNlLWRldi1leC0xLWdpdC11YXQtMTAtdHlwZW9mLXByb2plY3Qtdmlldy52ZXJjZWwuYXBwIn0",
+    signature:
+      "sc1driCym1S12Vrzjt51cUiWSwhICoAVlXkC72w3sEZqMsmLCCJbqDKyUo8oLQOF/g+OPY5u6mrdiMJQZTBZ0Rs=",
+>>>>>>> Stashed changes
   },
   frame: {
     version: "1",
