@@ -9,9 +9,10 @@ export const minikitConfig = {
   accountAssociation: {
     header:
       "eyJmaWQiOjYxNjIsInR5cGUiOiJhdXRoIiwia2V5IjoiMHg1MmE0NTdCZGU1NGZERWFGNzIxOTlBQTZhNjJENUMwMjdiQzhDYmQ4In0",
-    payload: "eyJkb21haW4iOiJiYXNlLWRldi1leC0xLnZlcmNlbC5hcHAifQ",
+    payload:
+      "eyJkb21haW4iOiJiYXNlLWRldi1leC0xLWdpdC11YXQtMDEtdHlwZW9mLXByb2plY3Qtdmlldy52ZXJjZWwuYXBwIn0",
     signature:
-      "ddNa80RaK59B3uqotGCojZACBbRlZCZu5MnDRjbQA/5qp+rJs+a1BOy0aYKMEAdiCzoYUQ71iojeLz/RIJssdRw=",
+      "wTBBDLhtjedZy2rLjwVFtkFSYb3SnRfm+JmU4U7QztU8BpLJIQ3zet6I4plO9t6ofkbP/Rqi5R9GmSs5CWXEQxs=",
   },
   frame: {
     version: "1",
