@@ -3,7 +3,6 @@ import {
   getAddressesFromBlob,
   saveAddressesToBlob,
   isValidEthereumAddress,
-  DEFAULT_ADDRESS,
   getDeploymentIdentifier,
 } from "../../../lib/address-utils";
 
@@ -135,18 +134,14 @@ export async function DELETE(request: NextRequest) {
       (addr: string) => addr !== address
     );
 
-    // If removing all addresses, keep the default address
-    const finalAddresses =
-      updatedAddresses.length === 0 ? [DEFAULT_ADDRESS] : updatedAddresses;
-
-    await saveAddressesToBlob(finalAddresses);
+    await saveAddressesToBlob(updatedAddresses);
     console.log(
-      `[${deployment}] Address ${address} removed successfully. Total addresses: ${finalAddresses.length}`
+      `[${deployment}] Address ${address} removed successfully. Total addresses: ${updatedAddresses.length}`
     );
 
     return NextResponse.json({
       message: "Address removed successfully",
-      addresses: finalAddresses,
+      addresses: updatedAddresses,
       deployment,
     });
   } catch (error) {
