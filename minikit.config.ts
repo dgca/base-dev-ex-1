@@ -10,9 +10,9 @@ export const minikitConfig = {
     header:
       "eyJmaWQiOjYxNjIsInR5cGUiOiJhdXRoIiwia2V5IjoiMHg1MmE0NTdCZGU1NGZERWFGNzIxOTlBQTZhNjJENUMwMjdiQzhDYmQ4In0",
     payload:
-      "eyJkb21haW4iOiJiYXNlLWRldi1leC0xLWdpdC11YXQtMTItdHlwZW9mLXByb2plY3Qtdmlldy52ZXJjZWwuYXBwIn0",
+      "eyJkb21haW4iOiJiYXNlLWRldi1leC0xLWdpdC11YXQtMTQtdHlwZW9mLXByb2plY3Qtdmlldy52ZXJjZWwuYXBwIn0",
     signature:
-      "pIhCYwwAuQL7gmc06G6rBHFfS2xewlmy9EU67YGCPRdmpao1XTSrJA+KUbe9fXVL8TVx2WobbOobRduPH6C1HRw=",
+      "4x+4Tft9BSva6mzKv+6dI/R2xG4l4OmeNEJLTLVusMQEnqtaMfRII+cKKVsLGEF+CLwFPE1CI1KPB53oCkY4ehw=",
   },
   frame: {
     version: "1",
