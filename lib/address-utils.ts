@@ -1,7 +1,6 @@
 import { put, list } from "@vercel/blob";
 
 export const BLOB_KEY = "allowed-addresses.json";
-export const DEFAULT_ADDRESS = "0x4f3285f64390263c02cb4326abfd1d73abc4e208";
 
 /**
  * Generate a deployment-specific blob key based on VERCEL_URL
@@ -43,7 +42,7 @@ export async function getAddressesFromBlob(): Promise<string[]> {
     return data.addresses;
   } catch (error) {
     console.error("Error fetching addresses from blob:", error);
-    return [DEFAULT_ADDRESS];
+    return [];
   }
 }
 
