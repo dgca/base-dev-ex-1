@@ -5,10 +5,13 @@ import { getAddressesFromBlob } from "../../../lib/address-utils";
 export async function GET() {
   const allowedAddresses = await getAddressesFromBlob();
 
+  const manifest = withValidManifest(minikitConfig);
+
   return Response.json({
     baseBuilder: {
       allowedAddresses,
     },
-    ...withValidManifest(minikitConfig),
+    accountAssociation: manifest.accountAssociation,
+    miniapp: manifest.frame,
   });
 }
